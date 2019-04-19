@@ -20,6 +20,9 @@ set si
 
 
 
+noremap! <F1> <Esc>
+
+
 filetype plugin indent on
 
 
