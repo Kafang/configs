@@ -1,6 +1,5 @@
 execute pathogen#infect()
 
-
 colorscheme industry 
 syntax on
 
@@ -21,6 +20,9 @@ set si
 
 
 noremap! <F1> <Esc>
+inoremap <leader><leader> <Esc>/<++><Enter>
+vnoremap <leader><leader> <Esc>/<++><Enter>
+map <leader><leader> <Esc>/<++><Enter>
 
 
 filetype plugin indent on
