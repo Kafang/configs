@@ -4,7 +4,7 @@
 #Dont blame me for calling this configure.sh it does not configure the project...
 
 
-cp config ~/.config/i3/config
+#cp config ~/.config/i3/config
 
 cp .vimrc ~
 
