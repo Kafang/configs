@@ -44,8 +44,6 @@ autocmd FileType matlab inoremap ,def function <++> = <++>(<++>)<cr><++><cr>end
 autocmd FileType matlab inoremap ,else else<cr>
 autocmd FileType matlab inoremap ,while while<space><++><cr><++><cr>end
 inoremap ,( (<space><++><space>)<Esc>T<hi
-
 inoremap ,[ [<space><++><space>]<Esc>T<hi
-
 inoremap ,{ {<space><++><space>}<Esc>T<hi
-
+inoremap ,++ <++>
