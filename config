@@ -73,7 +73,7 @@ bar {
 }
 
 bindsym $mod+d exec "dmenu_run -nf '#BBBBBB' -nb '#1E441E' -sb '#008402' -sf '#EEEEEE' -fn 'monospace-10' -p 'dmenu prompt &gt;'"
-
+bindsym $mod+c exec "i3-dmenu-desktop"
 #Important HOTKEYS
 
 bindsym $mod+KP_0  exec firefox
