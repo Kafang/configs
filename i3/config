@@ -30,10 +30,14 @@ font pango:DejaVu Sans Mono 8
 
 
 
+#Compton
+exec --no-startup-id "compton --shadow --shadow-radius 12 --shadow-offset-x '-17' --shadow-offset-y '-7' --shadow-opacity 0.5 -C -c"
+
 
 #Set Wallpaper on start
 
-exec --no-startup-id "feh --bg-scale /home/kai/.wallpaper2.jpg"
+exec --no-startup-id "feh --bg-scale /home/kai/.wallpaper3.jpg"
+exec --no-startup-id "wal -i /home/kai/.wallpaper3.jpg"
 
 #Sound
 
@@ -47,31 +51,31 @@ exec --no-startup-id "dropbox start"
 
 focus_follows_mouse no
 #Theme
-new_window pixel 5
+new_window pixel 0
 # class                 border  bground text    indicator child_border
-client.placeholder      #008402 #0C0C0C #FFFFFF #000000   #0C0C0C
+client.placeholder      #9fc8d1 #071928 #FFFFFF #000000   #9fc8d1
 
-client.focused          #002b36 #586e75 #fdf6e3 #268bd2
-client.focused_inactive #002b36 #073642 #839496 #073642
-client.unfocused        #002b36 #073642 #839496 #073642
-client.urgent           #002b36 #dc322f #fdf6e3 #002b36
+client.focused          #9fc8d1 #071928 #FFFFFF #000000
+client.focused_inactive #9fc8d1 #071928 #FFFFFF #000000
+client.unfocused        #9fc8d1 #071928 #FFFFFF #000000
+client.urgent           #9fc8d1 #071928 #FFFFFF #000000
 
 
-client.background       #FFFFFF
+client.background       #071928
 
 bar {
 	position top
         status_command i3status
         tray_output primary
             colors {
-                          background #002b36
-                                statusline #839496
-                                      separator  #586e75
-                                            focused_workspace  #b58900 #b58900 #002b36
-                                                  active_workspace   #586e75 #586e75 #002b36
-                                                        inactive_workspace #073642 #002b36 #839496
-                                                              urgent_workspace   #dc322f #dc322f #fdf6e3
-    binding_mode       #1E441E #A80874 #FFFFFF
+                        background #071928
+                        statusline #9FC8D1
+                        separator  #CB295B
+                        focused_workspace  #9A1234 #CB295B #9FC8D1
+                        active_workspace   #9A1234 #586e75 #9FC8D1
+                        inactive_workspace #9A1234 #C95898 #9FC8D1
+                        urgent_workspace   #9A1234 #dc322f #9FC8D1
+                        binding_mode       #9A1234 #A80874 #9fC8D1
   }
 }
 
@@ -91,7 +95,9 @@ bindsym $mod+Shift+s exec "shutdown now"
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec "i3-msg 'workspace 1: Home; exec terminator '"
+bindsym $mod+Return exec "i3-msg 'workspace 1: Home; exec urxvt -blr 10x3 -tr -sh 35 +sb '"
+bindsym $mod+Shift+Return exec "/home/kai/.config/i3/loadricetree.sh "
+
 
 # kill focused window
 bindsym $mod+q kill
