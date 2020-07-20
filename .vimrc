@@ -5,7 +5,8 @@ syntax on
 
 let mapleader=","
 highlight tolong ctermbg=darkred ctermfg=white
-match tolong /\%>80v.\+/
+match tolong '\%81v.'
+
 set showcmd
 set nocompatible
 set relativenumber
