@@ -22,6 +22,10 @@ set enc=utf-8
 
 set backspace=0
 
+set splitbelow
+set splitright
+
+
 
 noremap! <F1> <nop>
 
