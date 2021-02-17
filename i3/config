@@ -29,23 +29,21 @@ font pango:DejaVu Sans Mono 8
 
 
 
-
+# GAPS
+gaps inner 40
+gaps outer 30
 #Compton
-exec --no-startup-id "compton --shadow --shadow-radius 12 --shadow-offset-x '-17' --shadow-offset-y '-7' --shadow-opacity 0.5 -C -c"
+exec --no-startup-id "picom --shadow --shadow-radius 12 --shadow-offset-x '-17' --shadow-offset-y '-7' --shadow-opacity 0.5 -C -c"
 
 
 #Set Wallpaper on start
 
-exec --no-startup-id "feh --bg-scale /home/kai/.wallpaper3.jpg"
-exec --no-startup-id "wal -i /home/kai/.wallpaper3.jpg"
-
-#Sound
-
-exec --no-startup-id pulseaudio
+exec --no-startup-id "feh --bg-scale /home/kai/.config/i3/wallpaper.jpg" 
+exec --no-startup-id "wal -i /home/kai/.config/i3/wallpaper.jpg"
 
 #Dropbox
 
-exec --no-startup-id "dropbox start"
+#exec --no-startup-id "dropbox start"
 
 #focus
 
@@ -53,29 +51,29 @@ focus_follows_mouse no
 #Theme
 new_window pixel 0
 # class                 border  bground text    indicator child_border
-client.placeholder      #9fc8d1 #071928 #FFFFFF #000000   #9fc8d1
+client.placeholder      #9fc8d1 #0a0908 #e7c3ac #000000   #9fc8d1
 
-client.focused          #9fc8d1 #071928 #FFFFFF #000000
-client.focused_inactive #9fc8d1 #071928 #FFFFFF #000000
-client.unfocused        #9fc8d1 #071928 #FFFFFF #000000
-client.urgent           #9fc8d1 #071928 #FFFFFF #000000
+client.focused          #9fc8d1 #0a0908 #e7c3ac #000000
+client.focused_inactive #9fc8d1 #0a0908 #e7c3ac #000000
+client.unfocused        #9fc8d1 #0a0908 #e7c3ac #000000
+client.urgent           #9fc8d1 #0a0908 #e7c3ac #000000
 
 
-client.background       #071928
+client.background       #0a0908
 
 bar {
 	position top
         status_command i3status
         tray_output primary
             colors {
-                        background #071928
-                        statusline #9FC8D1
-                        separator  #CB295B
-                        focused_workspace  #9A1234 #CB295B #9FC8D1
-                        active_workspace   #9A1234 #586e75 #9FC8D1
-                        inactive_workspace #9A1234 #C95898 #9FC8D1
-                        urgent_workspace   #9A1234 #dc322f #9FC8D1
-                        binding_mode       #9A1234 #A80874 #9fC8D1
+                        background #0a0908
+                        statusline #e7c3ac
+                        separator  #A36250
+                        focused_workspace  #a18878 #A0271B #B38966
+                        active_workspace   #a18878 #A36250 #B38966
+                        inactive_workspace #a18878 #5B4F4D #B38966
+                        urgent_workspace   #a18878 #8E0F0A #B38966
+                        binding_mode       #a18878 #C4513B #B38966
   }
 }
 
@@ -83,11 +81,7 @@ bindsym $mod+d exec "dmenu_run -nf '#BBBBBB' -nb '#1E441E' -sb '#008402' -sf '#E
 bindsym $mod+c exec "i3-dmenu-desktop"
 #Important HOTKEYS
 
-bindsym $mod+KP_0  exec "i3-msg 'workspace 2: Browser; exec firefox'"
-bindsym $mod+KP_1  exec "i3-msg 'workspace 4: Files; exec terminator -bx ranger'"
-bindsym $mod+KP_2  exec terminator -bx vim
-bindsym $mod+KP_3  exec terminator -bx cmatrix
-bindsym $mod+b     exec /home/kai/lock.sh
+bindsym $mod+b exec "i3-msg 'workspace 2: Browser; exec vimb'"
 bindsym $mod+Shift+s exec "shutdown now"
 
 
@@ -95,7 +89,8 @@ bindsym $mod+Shift+s exec "shutdown now"
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec "i3-msg 'workspace 1: Home; exec urxvt -blr 10x3 -tr -sh 35 +sb '"
+#bindsym $mod+Return exec "i3-msg 'workspace 1: Home; exec urxvt -blr 10x3 -tr -sh 15 +sb '"
+bindsym $mod+Return exec "i3-msg 'workspace 1: Home; exec urxvt -blr 10x3 -sh 15 +sb '"
 bindsym $mod+Shift+Return exec "/home/kai/.config/i3/loadricetree.sh "
 
 
@@ -208,9 +203,18 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+#Multiscreen
+exec --no-startup-id "xrandr --output HDMI-1 --auto --right-of eDP-1"
 bindsym $mod+p move workspace to output right
 bindsym $mod+Shift+p move workspace to output left
+#Bind workspace to monitor
+#workspace $ws9 output HDMI-1
 
 # Startup
-exec "/home/kai/.config/i3/loadricetree.sh "
+#exec "/home/kai/.config/i3/loadricetree.sh "
 
+
+#Sound
+exec --no-startup-id "pulseaudio --daemonize"
+exec --no-startup-id "start-pulseaudio-x11" 
