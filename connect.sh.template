@@ -1,0 +1,10 @@
+#!/bin/bash
+killall pulseaudio wpa_supplicant dhcpcd
+
+wpa_supplicant -Dwext -B -i wlp0s20f0u2 -c <(wpa_passphrase lol nope)
+
+dhcpcd wlp0s20f0u2
+
+
+sudo -u kai pulseaudio --daemonize 
+sudo -u kai start-pulseaudio-x11 
