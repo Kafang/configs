@@ -39,9 +39,10 @@ On_White='\[\e[47m\]'	# White
 NC='\[\e[m\]'			# Color Reset
 
 ALERT="${BWhite}${On_Red}" # Bold White on red background
-
+ 
 # Useful aliases
 #alias c='clear'
+alias sl='sl -e' 
 alias ..='cd ..'
 alias ls='ls -CF --color=auto'
 alias ll='ls -lisa --color=auto'
@@ -55,14 +56,29 @@ alias myip='curl ipv4.icanhazip.com'
 alias grep='grep --color=auto'
 alias ebrc='$EDITOR ~/.bashrc'
 alias c='sudo ~/connect.sh'
-alias pa="pulseaudio --daemonize" 
+alias pa="pulseaudio --daemonize ; start-pulseaudio-x11" 
 alias ff="firefox" 
-alias cpf="c && pa && ff"
+alias cpf="c && pa && ff & anki "
+alias burp="~/BurpSuiteCommunity/BurpSuiteCommunity"
 # Set PATH so it includes user's private bin directories
-PATH="${HOME}/.gem/ruby/2.7.0/bin:${HOME}/racket/bin:${HOME}/eclipse:${HOME}/bin:${HOME}/.local/bin:${PATH}"
-
-# Set prompt
+PATH="${HOME}/.gem/ruby/3.0.0/bin:${HOME}/.gem/ruby/2.7.0/bin:${HOME}/racket/bin:${HOME}/eclipse:${HOME}/bin:${HOME}/.local/bin:${PATH}:${HOME}/Downloads/HITCON/depot_tools"
+ 
+# Set prompt (Fallback if other one would be broken comment it out!)
 PS1="${Yellow}\u@\h${NC}: ${Blue}\w${NC} \\$ "
 
-wal -n -a"99" -i /home/kai/.config/i3/wallpaper.jpg -e -q
+xset s on 
+xset s 30
+wal -n -a"50" -s 0.1 -i /home/kai/.config/i3/andy_wallpaper.jpg -e -q
 export EDITOR='vim'
+
+# Vim keybinds for everything!!!
+set -o vi
+
+#Shell
+source /usr/share/git/git-prompt.sh
+export PS1="\$(__git_ps1){\$?}[\[$(tput sgr0)\]\[\033[38;5;11m\]\u\[$(tput sgr0)\]:\[$(tput sgr0)\]\[\033[38;5;11m\]\l\[$(tput sgr0)\]:\[$(tput sgr0)\]\[\033[38;5;11m\]\h\[$(tput sgr0)\]]\[$(tput sgr0)\]\[\033[38;5;0m\]\[\033[48;5;13m\][\w]\[$(tput sgr0)\]\[\033[48;5;2m\]\\$>\[$(tput sgr0)\]"
+export LFS=/mnt/lfs
+source "$HOME/.cargo/env"
+clear
+clear
+shuf -n 1 /usr/share/doc/radare2/fortunes.fun

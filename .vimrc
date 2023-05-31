@@ -16,9 +16,19 @@ set autoread
 set hlsearch
 set showmatch
 set expandtab
+set tabstop=4
+set shiftwidth=4
+set smartindent
 set autoindent
 set si
 set enc=utf-8
+
+  
+" Mappings for Umlaute with an english keyboard
+"inoremap aae <C-K>a:
+"inoremap uue <C-K>u:
+"inoremap ooe <C-K>o:
+"inoremap sss <C-K>ss 
 
 set backspace=0
 
@@ -82,6 +92,7 @@ iabbrev @@ wegwerfadresse2720@protonmail.com
 inoremap <leader>q "" <++><esc>2F"a
 " map esc to jk
 inoremap jk <esc>
+inoremap JK <esc>
 inoremap <esc> <nop>
 
 " map bs to nop
@@ -168,14 +179,13 @@ autocmd BufWritePre *.java call Autoformat()  "Autoformat on save
 autocmd FileWritePost,BufWritePost *.java silent! execute "!javac %" | redraw! "Compile after save
 
 autocmd BufNewFile *.java call  NewJavaClass()
-autocmd FileType java set omnifunc=ale#completion#OmniFunc
 autocmd FileType java inoremap " ""<left>
 autocmd FileType java inoremap ( ()<left>
 autocmd FileType java inoremap ) <ESC>f)a
 autocmd FileType java inoremap [ []<left>
 autocmd FileType java inoremap ] <ESC>f]a
 autocmd FileType java inoremap { {}<left>
-autocmd FileType java inoremap {<CR> {<CR>}<ESC>O
+autocmd FileType java inoremap {<CR> <Space>{<CR>}<ESC>O
 autocmd FileType java iabbrev retunr return
 " in nm press gs to auto insert getters and setters after a block - > to
 autocmd FileType java nnoremap gs $BB"tyEW"nye~b"uye~}opublic <C-R>t get<C-R>u(){<CR>return <C-R>n;<CR>}<CR>public void set<C-R>u(<C-R>t value){<CR>this.<C-R>n = value;<CR>}<ESC>3<C-O>j
@@ -184,9 +194,42 @@ autocmd FileType java nnoremap gc ma/class<CR>w"cye}opublic <C-R>c(){<enter><ent
 "autocmd FileType java nnoremap gm /class<CR>w"nyef{wVy}pV}:s/\<private\>\|\<public\>\|\<static\>\|\<final\>//g<CR>{V}:g/=/d{V}"ay{V}JV:s/;/,/g<CR>$x"py$ddopublic <C-R>n(<C-R>p){<enter><C-R>a<enter>} 
 
 " Stuff for ERA
-autocmd FileType asm set ft=nasm
+" erap uses GAS
+"autocmd FileType asm set ft=nasm
 
+" java mappings can be useful for c as well
+autocmd FileType c inoremap " ""<left>
+autocmd FileType c inoremap ( ()<left>
+autocmd FileType c inoremap ) <ESC>f)a
+autocmd FileType c inoremap [ []<left>
+autocmd FileType c inoremap ] <ESC>f]a
+autocmd FileType c inoremap { {}<left>
+autocmd FileType c inoremap {<CR> <Space>{<CR>}<ESC>O
+autocmd FileType c iabbrev retunr return
 
+autocmd FileType cpp inoremap " ""<left>
+autocmd FileType cpp inoremap ( ()<left>
+autocmd FileType cpp inoremap ) <ESC>f)a
+autocmd FileType cpp inoremap [ []<left>
+autocmd FileType cpp inoremap ] <ESC>f]a
+autocmd FileType cpp inoremap { {}<left>
+autocmd FileType cpp inoremap {<CR> <Space>{<CR>}<ESC>O
+autocmd FileType cpp iabbrev retunr return
+autocmd FileType cpp inoremap main main(int argc, char** argv) 
 "required for ALE linting integration
 packloadall
+
+autocmd FileType java set omnifunc=ale#completion#OmniFunc
+autocmd FileType c set omnifunc=ale#completion#OmniFunc
+
+autocmd FileType cpp set omnifunc=ale#completion#OmniFunc
+
+" ERAP
+autocmd FileType tex set spell
+autocmd FileType tex set spelllang=en
+autocmd FileType h set ft=c
+
+set list
+set listchars=tab:>-
+
 silent! helptags all

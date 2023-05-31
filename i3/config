@@ -17,7 +17,8 @@ set $mod Mod4
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 8
+#font pango:DejaVu Sans Mono 8
+font pango:Source Code Pro 9
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -33,13 +34,18 @@ font pango:DejaVu Sans Mono 8
 gaps inner 40
 gaps outer 30
 #Compton
-exec --no-startup-id "picom --shadow --shadow-radius 12 --shadow-offset-x '-17' --shadow-offset-y '-7' --shadow-opacity 0.5 -C -c"
+exec --no-startup-id "picom --shadow --shadow-radius 12 --shadow-offset-x '-17' --shadow-offset-y '-7' --vsync --inactive-opacity 0.9"
 
 
 #Set Wallpaper on start
+exec --no-startup-id "wal -i /home/kai/.config/i3/andy_wallpaper.jpg"
+exec --no-startup-id "feh --bg-scale /home/kai/.config/i3/andy_wallpaper.jpg" 
 
-exec --no-startup-id "feh --bg-scale /home/kai/.config/i3/wallpaper.jpg" 
-exec --no-startup-id "wal -i /home/kai/.config/i3/wallpaper.jpg"
+#Screenlock after 30 seconds
+#xset shid seems broken... into bashrc it went
+exec --no-startup-id "xset s on"
+exec --no-startup-id "xset s 30"
+exec --no-startup-id "xss-lock --transfer-sleep-lock -- /home/kai/.config/i3/lock.sh"
 
 #Dropbox
 
@@ -51,30 +57,30 @@ focus_follows_mouse no
 #Theme
 new_window pixel 0
 # class                 border  bground text    indicator child_border
-client.placeholder      #9fc8d1 #0a0908 #e7c3ac #000000   #9fc8d1
+client.placeholder      #9fc8d1 #0a1f16 #e7c7a4 #000000   #9fc8d1
 
-client.focused          #9fc8d1 #0a0908 #e7c3ac #000000
-client.focused_inactive #9fc8d1 #0a0908 #e7c3ac #000000
-client.unfocused        #9fc8d1 #0a0908 #e7c3ac #000000
-client.urgent           #9fc8d1 #0a0908 #e7c3ac #000000
+client.focused          #9fc8d1 #0a1f16 #e7c7a4 #000000
+client.focused_inactive #9fc8d1 #0a1f16 #e7c7a4 #000000
+client.unfocused        #9fc8d1 #0a1f16 #e7c7a4 #000000
+client.urgent           #9fc8d1 #0a1f16 #e7c7a4 #000000
 
 
-client.background       #0a0908
+client.background       #0a1f16
 
 bar {
-	position top
-        status_command i3status
-        tray_output primary
-            colors {
-                        background #0a0908
-                        statusline #e7c3ac
-                        separator  #A36250
-                        focused_workspace  #a18878 #A0271B #B38966
-                        active_workspace   #a18878 #A36250 #B38966
-                        inactive_workspace #a18878 #5B4F4D #B38966
-                        urgent_workspace   #a18878 #8E0F0A #B38966
-                        binding_mode       #a18878 #C4513B #B38966
-  }
+        position top
+                status_command i3status
+                tray_output primary
+                colors {
+                        background #080808
+                                statusline #c3c3c3
+                                separator  #c3c3c3
+                                focused_workspace  #225257 #cacaca #c9a85c
+                                active_workspace   #225257 #cacaca #c9a85c
+                                inactive_workspace #225257 #575757 #c9a85c
+                                urgent_workspace   #225257 #ffffff #c9a85c
+                                binding_mode       #225257 #f3f3f3 #c9a85c
+                }
 }
 
 bindsym $mod+d exec "dmenu_run -nf '#BBBBBB' -nb '#1E441E' -sb '#008402' -sf '#EEEEEE' -fn 'monospace-10' -p 'dmenu prompt &gt;'"
@@ -84,14 +90,15 @@ bindsym $mod+c exec "i3-dmenu-desktop"
 bindsym $mod+b exec "i3-msg 'workspace 2: Browser; exec vimb'"
 bindsym $mod+Shift+s exec "shutdown now"
 
+bindsym $mod+v exec "$HOME/.config/i3/lock.sh"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-#bindsym $mod+Return exec "i3-msg 'workspace 1: Home; exec urxvt -blr 10x3 -tr -sh 15 +sb '"
-bindsym $mod+Return exec "i3-msg 'workspace 1: Home; exec urxvt -blr 10x3 -sh 15 +sb '"
-bindsym $mod+Shift+Return exec "/home/kai/.config/i3/loadricetree.sh "
+bindsym $mod+Return exec "i3-msg 'workspace 1: Home; exec urxvt -bw 3 -bd Gray -blr 20x3 -tr -sh 8 +sb '"
+#-fn "xft:Bitstream Vera Sans Mono:pixelsize=15"
+#bindsym $mod+Return exec "i3-msg 'workspace 1: Home; exec urxvt  -blr 10x3 -sh 15 +sb '"
 
 
 # kill focused window
@@ -118,10 +125,10 @@ bindsym $mod+Shift+l move right
 
 
 # split in horizontal orientation
-bindsym $mod+x split h
+bindsym $mod+x split horizontal
 
 # split in vertical orientation
-bindsym $mod+y split v
+bindsym $mod+z split vertical
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -185,21 +192,21 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+# These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
+# Pressing left will shrink the window’s width.
+# Pressing right will grow the window’s width.
+# Pressing up will shrink the window’s height.
+# Pressing down will grow the window’s height.
         bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+                bindsym j resize grow height 10 px or 10 ppt
+                bindsym k resize shrink height 10 px or 10 ppt
+                bindsym l resize grow width 10 px or 10 ppt
 
 
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+# back to normal: Enter or Escape
+                bindsym Return mode "default"
+                bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"
